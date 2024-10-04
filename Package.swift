@@ -3,6 +3,20 @@
 
 import PackageDescription
 
+
+#if TUIST
+    import ProjectDescription
+
+    let packageSettings = PackageSettings(
+        productDestinations: [
+            "MyLibrary": [
+                .iPhone
+            ],
+        ]
+    )
+
+#endif
+
 let package = Package(
     name: "MyLibrary",
     products: [
