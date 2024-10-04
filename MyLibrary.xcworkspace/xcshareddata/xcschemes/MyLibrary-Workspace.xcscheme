@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6DCB55F6E1887BF1D9AC05E5"
-               BuildableName = "MyLibrary.app"
+               BuildableName = "MyLibrary.framework"
                BlueprintName = "MyLibrary"
                ReferencedContainer = "container:MyLibrary.xcodeproj">
             </BuildableReference>
@@ -40,16 +40,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6DCB55F6E1887BF1D9AC05E5"
-            BuildableName = "MyLibrary.app"
+            BuildableName = "MyLibrary.framework"
             BlueprintName = "MyLibrary"
             ReferencedContainer = "container:MyLibrary.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +56,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6DCB55F6E1887BF1D9AC05E5"
-            BuildableName = "MyLibrary.app"
+            BuildableName = "MyLibrary.framework"
             BlueprintName = "MyLibrary"
             ReferencedContainer = "container:MyLibrary.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

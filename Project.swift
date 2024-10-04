@@ -6,7 +6,7 @@ let project = Project(
         .target(
             name: "MyLibrary",
             destinations: .iOS,
-            product: .app,
+            product: .framework,
             bundleId: "io.tuist.App",
             sources: ["Sources/**/*.swift"]
         ),
