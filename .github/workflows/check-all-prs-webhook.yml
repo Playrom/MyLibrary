@@ -32,6 +32,7 @@ jobs:
             pr_branch=$(echo "$pr_json" | jq -r '.branch')
 
             echo "Processing PR #$pr_number on branch $pr_branch"
+            echo "Body $pr_json"
 
             # Trigger the check-related-prs workflow for this PR, passing the sanitized PR body as input
             echo "Re-triggering checks for PR #$pr_number with workflow_dispatch"
