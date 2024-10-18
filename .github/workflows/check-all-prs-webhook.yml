@@ -35,6 +35,8 @@ jobs:
 
             # Trigger the check-related-prs workflow for this PR, passing the PR body as input
             echo "Re-triggering checks for PR #$pr_number with workflow_dispatch"
+            echo "https://api.github.com/repos/${{ github.repository }}/actions/workflows/check-releated-prs-across-repositories.yml/dispatches"
+            echo "{\"ref\":\"$pr_branch\", \"inputs\": {\"pr_body\": \"$pr_body\"}}"
             curl -X POST \
               -H "Authorization: Bearer ${{ secrets.USER_ACTION_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
