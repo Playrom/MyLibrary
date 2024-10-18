@@ -32,6 +32,7 @@ jobs:
           fi
 
           echo "PR Body: $PR_BODY"
+          echo "PR_BODY=$PR_BODY" >> $GITHUB_ENV  # Write it to the environment file
 
       - name: Start - Extract Related PRs from Main PR Body
         id: extract_related_prs
@@ -39,6 +40,7 @@ jobs:
         run: |
           echo "Step 1: Extracting related PR URLs from the main PR body..."
           # Extract related PR URLs from the PR body.
+          echo "PR Body From Previous Step: $PR_BODY"
           RELATED_PRS=$(echo "$PR_BODY" | grep -Eo 'https://github.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/pull/[0-9]+' | tr '\n' ' ')
 
           if [ -z "$RELATED_PRS" ]; then
