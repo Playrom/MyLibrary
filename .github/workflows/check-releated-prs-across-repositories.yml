@@ -16,14 +16,14 @@ jobs:
           RELATED_PRS=$(echo "${{ github.event.client_payload.pull_request_body }}" | grep -Eo 'https://github.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/pull/[0-9]+')
         
           echo "Checking releated PRs" 
-          # Check if related PRs are found
-          if [ -z "$RELATED_PRS" ]; then
-            echo "No related PRs found."
-            exit 0 # Exit early if there are no related PRs
-          fi
-
-          # Initialize flag to check if all related PRs are merged
-          ALL_MERGED=true
+#          # Check if related PRs are found
+#          if [ -z "$RELATED_PRS" ]; then
+#            echo "No related PRs found."
+#            exit 0 # Exit early if there are no related PRs
+#          fi
+#
+#          # Initialize flag to check if all related PRs are merged
+#          ALL_MERGED=true
 #
 #          # Loop over each related PR URL and check its merge status
 #          for PR_URL in $RELATED_PRS; do
