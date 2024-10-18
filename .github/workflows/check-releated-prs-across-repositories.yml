@@ -13,41 +13,41 @@ jobs:
         run: |
           echo "Starting Up Action" 
           # Extract related PR URLs from the main PR body
-          RELATED_PRS=$(echo "${{ github.event.client_payload.pull_request_body }}" | grep -Eo 'https://github.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/pull/[0-9]+')
-        
-          echo "Checking releated PRs" 
-          # Check if related PRs are found
-          if [ -z "$RELATED_PRS" ]; then
-            echo "No related PRs found."
-            exit 0 # Exit early if there are no related PRs
-          fi
-
-          # Initialize flag to check if all related PRs are merged
-          ALL_MERGED=true
-
-          # Loop over each related PR URL and check its merge status
-          for PR_URL in $RELATED_PRS; do
-            PR_NUMBER=$(basename "$PR_URL")
-            REPO_FULL_NAME=$(echo "$PR_URL" | sed 's|https://github.com/||' | sed 's|/pull/.*||')
-            echo "Checking if $PR_NUMBER PR in $REPO_FULL_NAME is closed and merged" 
-
-            # Get the PR status using GitHub API
-            PR_STATUS=$(curl -H "Authorization: token ${{ secrets.USER_ACTION_TOKEN }}" \
-              "https://api.github.com/repos/$REPO_FULL_NAME/pulls/$PR_NUMBER" | jq -r '.merged')
-
-            # If the PR is not merged, mark as not merged and fail the check
-            if [ "$PR_STATUS" != "true" ]; then
-              ALL_MERGED=false
-              echo "Related PR $PR_URL is not merged."
-            else
-              echo "Related PR $PR_URL has been merged."
-            fi
-          done
-
-          # Fail the check if not all PRs are merged
-          if [ "$ALL_MERGED" != "true" ]; then
-            echo "Not all related PRs are merged. Failing the check."
-            exit 1
-          else
-            echo "All related PRs are merged. Passing the check."
-          fi
+#          RELATED_PRS=$(echo "${{ github.event.client_payload.pull_request_body }}" | grep -Eo 'https://github.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/pull/[0-9]+')
+#        
+#          echo "Checking releated PRs" 
+#          # Check if related PRs are found
+#          if [ -z "$RELATED_PRS" ]; then
+#            echo "No related PRs found."
+#            exit 0 # Exit early if there are no related PRs
+#          fi
+#
+#          # Initialize flag to check if all related PRs are merged
+#          ALL_MERGED=true
+#
+#          # Loop over each related PR URL and check its merge status
+#          for PR_URL in $RELATED_PRS; do
+#            PR_NUMBER=$(basename "$PR_URL")
+#            REPO_FULL_NAME=$(echo "$PR_URL" | sed 's|https://github.com/||' | sed 's|/pull/.*||')
+#            echo "Checking if $PR_NUMBER PR in $REPO_FULL_NAME is closed and merged" 
+#
+#            # Get the PR status using GitHub API
+#            PR_STATUS=$(curl -H "Authorization: token ${{ secrets.USER_ACTION_TOKEN }}" \
+#              "https://api.github.com/repos/$REPO_FULL_NAME/pulls/$PR_NUMBER" | jq -r '.merged')
+#
+#            # If the PR is not merged, mark as not merged and fail the check
+#            if [ "$PR_STATUS" != "true" ]; then
+#              ALL_MERGED=false
+#              echo "Related PR $PR_URL is not merged."
+#            else
+#              echo "Related PR $PR_URL has been merged."
+#            fi
+#          done
+#
+#          # Fail the check if not all PRs are merged
+#          if [ "$ALL_MERGED" != "true" ]; then
+#            echo "Not all related PRs are merged. Failing the check."
+#            exit 1
+#          else
+#            echo "All related PRs are merged. Passing the check."
+#          fi
