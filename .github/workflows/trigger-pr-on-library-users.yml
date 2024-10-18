@@ -1,0 +1,17 @@
+name: Trigger Repository Dispatch on Libraries that uses this Library
+
+on:
+  pull_request:
+    types: [closed, synchronize]  # Trigger on PR close or synchronize (e.g., when PR is updated)
+
+jobs:
+  trigger-dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger repository_dispatch event
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.USER_ACTION_TOKEN }}" \
+          -H "Accept: application/json" \
+          -d '{"event_type": "check-related-prs", "client_payload": { "repository": "${{ github.repository }}", "pull_request": "${{ github.event.pull_request.number }}" }}' \
+          https://api.github.com/repos/Playrom/App/dispatches
