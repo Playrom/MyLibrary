@@ -2,7 +2,7 @@ name: Trigger Repository Dispatch on Libraries that uses this Library
 
 on:
   pull_request:
-    types: [closed, synchronize]  # Trigger on PR close or synchronize (e.g., when PR is updated)
+    types: [opened, closed, reopened]
 
 jobs:
   trigger-dispatch:
