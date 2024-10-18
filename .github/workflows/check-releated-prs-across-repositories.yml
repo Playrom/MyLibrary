@@ -9,7 +9,16 @@ on:
 jobs:
   check-related-prs:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event.pull_request  # Ensure it's only triggered by PR events
     steps:
+      - name: Ensure PR Context
+        run: |
+          if [ "${{ github.event.pull_request.number }}" == "" ]; then
+            echo "This action should only run within a pull request context. Exiting."
+            exit 1
+          fi
+        shell: bash
+
       - name: Start - Extract Related PRs from Main PR Body
         run: |
           echo "Step 1: Starting extraction of related PRs from the main PR body..."
@@ -54,7 +63,7 @@ jobs:
             echo "Repository: $REPO_FULL_NAME, PR Number: $PR_NUMBER"
             
             # Get the PR status using GitHub API
-            PR_STATUS=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            PR_STATUS=$(curl -H "Authorization: token ${{ secrets.USER_ACTION_TOKEN }}" \
               "https://api.github.com/repos/$REPO_FULL_NAME/pulls/$PR_NUMBER" | jq -r '.merged')
 
             # Check if PR is merged
@@ -76,5 +85,4 @@ jobs:
 
       - name: End - All Related PRs Merged
         if: ${{ steps.check_related_prs.outcome == 'success' }}
-        run: |
-          echo "Step 3: All related PRs have been successfully merged. Proceeding..."
+        run: echo "Step 3: All related PRs have been successfully merged. Proceeding..."
