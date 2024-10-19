@@ -1,0 +1,22 @@
+name: Trigger Libraries That Depend on PR Closing
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  trigger-main-repo:
+    if: github.event.pull_request.merged == true  # Only run if the PR is merged
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger repository_dispatch for main repository
+        run: |
+          echo "Triggering repository_dispatch event in the main repository..."
+          
+          # Trigger repository_dispatch in the main repository
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.USER_ACTION_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d "{\"event_type\": \"dispatch-triggered-open-prs-check\"}" \
+            https://api.github.com/repos/Playrom/App/dispatches
