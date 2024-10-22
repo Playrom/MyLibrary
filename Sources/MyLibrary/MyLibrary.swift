@@ -5,4 +5,4 @@ import MySubLibrary
 
 public let hello: String = "Hello, World!"
 public let fooBar: String = "Foo Ba3r"
-public let miao: Int = sub
+public let ok = version2
