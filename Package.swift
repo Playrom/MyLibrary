@@ -12,7 +12,7 @@ let package = Package(
             targets: ["MyLibrary"]),
     ],
     dependencies: [
-        .package(url: "git@github.com:Playrom/MySubLibrary.git", branch: "feature-otokiosk/feature1")
+        .package(url: "git@github.com:Playrom/MySubLibrary.git", branch: "feature-otokiosk/feature2")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
