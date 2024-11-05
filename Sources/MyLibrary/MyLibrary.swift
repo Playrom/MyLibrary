@@ -4,4 +4,4 @@
 import MySubLibrary
 
 public let hello: String = "Hello, World!"
-public let fooBar: String = "Foo Ba3333r"
+public let fooBar: String = "Foo Ba333ff3r"
